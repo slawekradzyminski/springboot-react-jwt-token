@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
-import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import {Button, Form, Grid, Message, Segment} from 'semantic-ui-react'
 import AuthContext from '../context/AuthContext'
-import { orderApi } from '../misc/OrderApi'
-import { parseJwt, handleLogError } from '../misc/Helpers'
+import {orderApi} from '../misc/OrderApi'
+import {handleLogError, parseJwt} from '../misc/Helpers'
 
 class Signup extends Component {
   static contextType = AuthContext
@@ -124,7 +124,7 @@ class Signup extends Component {
               </Segment>
             </Form>
             <Message>{`Already have an account? `}
-              <a href='/login' color='violet' as={NavLink} to="/login">Login</a>
+              <a href='/login' color='violet'>Login</a>
             </Message>
             {isError && <Message negative>{errorMessage}</Message>}
           </Grid.Column>
