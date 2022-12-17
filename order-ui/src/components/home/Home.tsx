@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Statistic, Icon, Grid, Container, Image, Segment, Dimmer, Loader } from 'semantic-ui-react'
-import { orderApi } from '../misc/OrderApi'
-import { handleLogError } from '../misc/Helpers'
+import React, {Component} from 'react'
+import {Container, Dimmer, Grid, Icon, Image, Loader, Segment, Statistic} from 'semantic-ui-react'
+import {orderApi} from '../misc/OrderApi'
+import {handleLogError} from '../misc/Helpers'
 
 class Home extends Component {
   state = {
@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    this.setState({ isLoading: true })
+    this.setState({isLoading: true})
     try {
       let response = await orderApi.numberOfUsers()
       const numberOfUsers = response.data
