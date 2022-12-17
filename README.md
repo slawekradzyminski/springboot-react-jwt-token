@@ -10,7 +10,7 @@ The goal of this project is to implement an application called `order-app` to ma
   
   The application secured endpoints can just be accessed if a valid JWT access token is provided.
   
-  `order-api` stores its data in [`MySQL`](https://www.mysql.com/) database.
+  `order-api` stores its data in h2 database.
 
   `order-api` has the following endpoints
 
@@ -43,18 +43,6 @@ The goal of this project is to implement an application called `order-app` to ma
 - [`Docker`](https://www.docker.com/)
 - [`Docker-Compose`](https://docs.docker.com/compose/install/)
 - [`jq`](https://stedolan.github.io/jq)
-
-## Start Environment
-
-- Open a terminal and inside `springboot-react-jwt-token` root folder run
-  ```
-  docker-compose up -d
-  ```
-  
-- Wait for `mysql` Docker container to be up and running. To check it, run
-  ```
-  docker-compose ps
-  ```
 
 ## Running order-app using Maven & Npm
 
@@ -247,12 +235,6 @@ The goal of this project is to implement an application called `order-app` to ma
     ```
 
 ## Util Commands
-
-- **MySQL**
-  ```
-  docker exec -it -e MYSQL_PWD=secret mysql mysql -uroot --database orderdb
-  show tables;
-  ```
 
 - **jwt.io**
 
