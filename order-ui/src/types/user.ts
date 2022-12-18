@@ -1,3 +1,4 @@
+import { Order } from "./order";
 import { Roles } from "./roles";
 
 export type User = {
@@ -6,6 +7,15 @@ export type User = {
   name: string;
   email: string;
 };
+
+export type ApiUser = {
+  id: number,
+  username: string,
+  name: string,
+  email: string,
+  role: Roles,
+  orders: Order[]
+}
 
 export type JwtDetails = {
   aud: string;

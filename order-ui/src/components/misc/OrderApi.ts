@@ -1,3 +1,4 @@
+import { OrderCreate } from '../../types/order'
 import { User, UserLocalStorage } from '../../types/user'
 import { axiosInstance } from './axiosConfig'
 
@@ -45,7 +46,7 @@ const deleteOrder = (user: UserLocalStorage, orderId: string) => {
   })
 }
 
-const createOrder = (user: UserLocalStorage, order: string) => {
+const createOrder = (user: UserLocalStorage, order: OrderCreate) => {
   return axiosInstance.post('/api/orders', order, {
     headers: {
       ...json,
