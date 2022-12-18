@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, ChangeEvent } from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Form, Grid, Message, Segment } from "semantic-ui-react";
-import AuthContext, { AuthProvider } from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import { orderApi } from "../misc/OrderApi";
 import { handleLogError, parseJwt } from "../misc/Helpers";
 
@@ -10,7 +10,7 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const authContext: AuthProvider = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     const isLoggedIn = authContext.userIsAuthenticated();
@@ -21,25 +21,25 @@ export const Login = () => {
     event.target.name === 'username' ? setUsername(event.target.value) : setPassword(event.target.value)
   };
 
+  const loginUser = async () => {
+    const response = await orderApi.authenticate(username, password)
+    const { accessToken } = response.data;
+    const data = parseJwt(accessToken);
+    const user = { data, accessToken };
+
+    authContext.userLogin(user);
+    setUsername('')
+    setPassword('')
+    setIsLoggedIn(true)
+    setIsError(false)
+  }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!(username && password)) {
       setIsError(true)
       return;
-    }
-
-    const loginUser = async () => {
-      const response = await orderApi.authenticate(username, password)
-      const { accessToken } = response.data;
-      const data = parseJwt(accessToken);
-      const user = { data, accessToken };
-
-      authContext.userLogin(user);
-      setUsername('')
-      setPassword('')
-      setIsLoggedIn(true)
-      setIsError(false)
     }
 
     loginUser()
