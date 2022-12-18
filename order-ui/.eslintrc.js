@@ -12,7 +12,8 @@ module.exports = {
         },
     },
     rules: {
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "@typescript-eslint/ban-ts-comment": "off"
     },
     settings: {
         react: {
