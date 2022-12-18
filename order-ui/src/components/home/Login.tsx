@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, ChangeEvent } from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Form, Grid, Message, Segment } from "semantic-ui-react";
 import AuthContext, { AuthProvider } from "../context/AuthContext";
@@ -10,7 +10,6 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  // @ts-ignore
   const authContext: AuthProvider = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,10 +17,9 @@ export const Login = () => {
     setIsLoggedIn(isLoggedIn)
   }, []);
 
-  // @ts-ignore
-  const handleInputChange = (e, { name, value }) => {
-    return name === 'username' ? setUsername(value) : setPassword(value)
-  }
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.target.name === 'username' ? setUsername(event.target.value) : setPassword(event.target.value)
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,23 +29,24 @@ export const Login = () => {
       return;
     }
 
-    orderApi
-      .authenticate(username, password)
-      .then((response) => {
-        const { accessToken } = response.data;
-        const data = parseJwt(accessToken);
-        const user = { data, accessToken };
+    const loginUser = async () => {
+      const response = await orderApi.authenticate(username, password)
+      const { accessToken } = response.data;
+      const data = parseJwt(accessToken);
+      const user = { data, accessToken };
 
-        authContext.userLogin(user);
-        setUsername('')
-        setPassword('')
-        setIsLoggedIn(true)
-        setIsError(false)
-      })
-      .catch((error) => {
+      authContext.userLogin(user);
+      setUsername('')
+      setPassword('')
+      setIsLoggedIn(true)
+      setIsError(false)
+    }
+
+    loginUser()
+      .catch(error => {
         handleLogError(error);
         setIsError(true)
-      });
+      })
   };
 
   const redirect = () => (
@@ -66,7 +65,6 @@ export const Login = () => {
               icon="user"
               iconPosition="left"
               placeholder="Username"
-              // @ts-ignore
               onChange={handleInputChange}
             />
             <Form.Input
@@ -76,7 +74,6 @@ export const Login = () => {
               iconPosition="left"
               placeholder="Password"
               type="password"
-              // @ts-ignore
               onChange={handleInputChange}
             />
             <Button color="violet" fluid size="large">
