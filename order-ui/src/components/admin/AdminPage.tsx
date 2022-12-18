@@ -6,7 +6,7 @@ import { orderApi } from '../misc/OrderApi'
 import AdminTab from './AdminTab'
 import { handleLogError } from '../misc/Helpers'
 import { ApiUser } from '../../types/user'
-import { Order } from '../../types/order'
+import { Order, OrderCreate } from '../../types/order'
 import { Roles } from '../../types/roles'
 
 export const AdminPage = () => {
@@ -44,43 +44,39 @@ export const AdminPage = () => {
   };
 
   const handleGetUsers = () => {
-    const user = authContext.getUser()
-
     setIsUsersLoading(true)
-    orderApi.getUsers(user)
-      .then(response => {
-        setUsers(response.data)
-      })
-      .catch(error => {
-        handleLogError(error)
-      })
-      .finally(() => {
-        setIsUsersLoading(false)
-      })
+    const getUsers = async () => {
+      const user = authContext.getUser()
+      const usersResponse = await orderApi.getUsers(user)
+      setUsers(usersResponse.data)
+    }
+
+    getUsers()
+      .catch(error => handleLogError(error))
+      .finally(() => setIsUsersLoading(false))
   }
 
   const handleDeleteUser = (username: string) => {
-    const user = authContext.getUser()
+    const deleteUser = async () => {
+      const user = authContext.getUser()
+      await orderApi.deleteUser(user, username)
+      handleGetUsers()
+    }
 
-    orderApi.deleteUser(user, username)
-      .then(() => {
-        handleGetUsers()
-      })
-      .catch(error => {
-        handleLogError(error)
-      })
+    deleteUser()
+      .catch(error => handleLogError(error))
   }
 
   const handleSearchUser = () => {
-    const user = authContext.getUser()
+    const searchUser = async () => {
+      const user = authContext.getUser()
+      const searchResponse = await orderApi.getUsers(user, userUsernameSearch)
+      const data = searchResponse.data
+      const users = data instanceof Array ? data : [data]
+      setUsers(users)
+    }
 
-    const username = userUsernameSearch
-    orderApi.getUsers(user, username)
-      .then(response => {
-        const data = response.data
-        const users = data instanceof Array ? data : [data]
-        setUsers(users)
-      })
+    searchUser()
       .catch(error => {
         handleLogError(error)
         setUsers([])
@@ -88,31 +84,27 @@ export const AdminPage = () => {
   }
 
   const handleGetOrders = () => {
-    const user = authContext.getUser()
-
     setIsOrdersLoading(true)
-    orderApi.getOrders(user)
-      .then(response => {
-        setOrders(response.data)
-      })
-      .catch(error => {
-        handleLogError(error)
-      })
-      .finally(() => {
-        setIsOrdersLoading(false)
-      })
+    const getOrders = async () => {
+      const user = authContext.getUser()
+      const ordersResponse = await orderApi.getOrders(user)
+      setOrders(ordersResponse.data)
+    }
+
+    getOrders()
+      .catch(error => handleLogError(error))
+      .finally(() => setIsOrdersLoading(false))
   }
 
   const handleDeleteOrder = (isbn: string) => {
-    const user = authContext.getUser()
+    const deleteOrder = async () => {
+      const user = authContext.getUser()
+      await orderApi.deleteOrder(user, isbn)
+      handleGetOrders()
+    }
 
-    orderApi.deleteOrder(user, isbn)
-      .then(() => {
-        handleGetOrders()
-      })
-      .catch(error => {
-        handleLogError(error)
-      })
+    deleteOrder()
+      .catch(error => handleLogError(error))
   }
 
   const handleCreateOrder = () => {
@@ -122,25 +114,26 @@ export const AdminPage = () => {
     if (!parsedOrderDescription) {
       return
     }
+    const order: OrderCreate = { description: parsedOrderDescription }
 
-    const order = { description: parsedOrderDescription }
-    orderApi.createOrder(user, order)
-      .then(() => {
-        handleGetOrders()
-        setOrderDescription('')
-      })
-      .catch(error => {
-        handleLogError(error)
-      })
+    const createOrder = async () => {
+      await orderApi.createOrder(user, order)
+      handleGetOrders()
+      setOrderDescription('')
+    }
+
+    createOrder()
+      .catch(error => handleLogError(error))
   }
 
   const handleSearchOrder = () => {
-    const user = authContext.getUser()
+    const searchOrder = async () => {
+      const user = authContext.getUser()
+      const ordersResponse = await orderApi.getOrders(user, orderTextSearch)
+      setOrders(ordersResponse.data)
+    }
 
-    orderApi.getOrders(user, orderTextSearch)
-      .then(response => {
-        setOrders(response.data)
-      })
+    searchOrder()
       .catch(error => {
         handleLogError(error)
         setOrders([])
