@@ -1,11 +1,11 @@
-export function parseJwt(token) {
+export function parseJwt(token: string) {
   if (!token) { return }
   const base64Url = token.split('.')[1]
   const base64 = base64Url.replace('-', '+').replace('_', '/')
   return JSON.parse(window.atob(base64))
 }
 
-export const handleLogError = (error) => {
+export const handleLogError = (error: any) => {
   if (error.response) {
     console.log(error.response.data);
   } else if (error.request) {

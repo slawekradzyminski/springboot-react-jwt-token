@@ -9,10 +9,10 @@ interface AuthContextProps {
   userLogin: (user: UserLocalStorage) => void,
   userLogout: () => void,
   userIsAuthenticated: () => boolean,
-  getUser: () => any
+  getUser: () => UserLocalStorage
 }
 
-const AuthProvider = (props: React.PropsWithChildren<AuthContextProps>) => {
+const AuthProvider = (props: React.PropsWithChildren) => {
   const [user, setUser] = useState<UserLocalStorage | null>(null);
 
   useEffect(() => {

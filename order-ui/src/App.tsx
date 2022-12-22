@@ -9,7 +9,7 @@ import Signup from './components/home/Signup'
 import AdminPage from './components/admin/AdminPage'
 import UserPage from './components/user/UserPage'
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <Router>

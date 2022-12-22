@@ -1,35 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Menu } from 'semantic-ui-react'
-import { useAuth } from '../context/AuthContext'
+import AuthContext from '../context/AuthContext'
 
-function Navbar() {
-  const { getUser, userIsAuthenticated, userLogout } = useAuth()
+const Navbar = () => {
+  const authContext = useContext(AuthContext);
 
   const logout = () => {
-    userLogout()
+    authContext.userLogout()
   }
 
   const enterMenuStyle = () => {
-    return userIsAuthenticated() ? { "display": "none" } : { "display": "block" }
+    return authContext.userIsAuthenticated() ? { "display": "none" } : { "display": "block" }
   }
 
   const logoutMenuStyle = () => {
-    return userIsAuthenticated() ? { "display": "block" } : { "display": "none" }
+    return authContext.userIsAuthenticated() ? { "display": "block" } : { "display": "none" }
   }
 
   const adminPageStyle = () => {
-    const user = getUser()
+    const user = authContext.getUser()
     return user && user.data.rol[0] === 'ADMIN' ? { "display": "block" } : { "display": "none" }
   }
 
   const userPageStyle = () => {
-    const user = getUser()
+    const user = authContext.getUser()
     return user && user.data.rol[0] === 'USER' ? { "display": "block" } : { "display": "none" }
   }
 
   const getUserName = () => {
-    const user = getUser()
+    const user = authContext.getUser()
     return user ? user.data.name : ''
   }
 
