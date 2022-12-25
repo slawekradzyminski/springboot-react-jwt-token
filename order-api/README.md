@@ -76,20 +76,6 @@ use [`JWT Authentication`](https://en.wikipedia.org/wiki/JSON_Web_Token) to secu
       ./mvnw clean spring-boot:run
       ```
 
-- **order-ui**
-
-    - Open another terminal and navigate to `springboot-react-jwt-token/order-ui` folder
-
-    - Run the command below if you are running the application for the first time
-      ```
-      npm install
-      ```
-
-    - Run the `npm` command below to start the application
-      ```
-      npm start
-      ```
-
 ## Applications URLs
 
 | Application | URL                                   | Credentials                                         |
@@ -257,12 +243,6 @@ use [`JWT Authentication`](https://en.wikipedia.org/wiki/JSON_Web_Token) to secu
       ```
 
 ## Util Commands
-
-- **MySQL**
-  ```
-  docker exec -it -e MYSQL_PWD=secret mysql mysql -uroot --database orderdb
-  show tables;
-  ```
 
 - **jwt.io**
 
