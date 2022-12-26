@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Dimmer, Grid, Icon, Image, Loader, Segment, Statistic } from 'semantic-ui-react'
-import { orderApi } from '../misc/OrderApi'
-import { handleLogError } from '../misc/Helpers'
+import { orderApi } from '../../api/OrderApi'
+import { handleLogError } from '../../util/Helpers'
 
 export const Home = () => {
   const [numberOfUsers, setNumberOfUsers] = useState<number>(0);

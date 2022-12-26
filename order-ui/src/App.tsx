@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AuthProvider } from './components/context/AuthContext'
-import PrivateRoute from './components/misc/PrivateRoute'
+import PrivateRoute from './router/PrivateRoute'
 import Navbar from './components/misc/Navbar'
 import Home from './components/home/Home'
 import Login from './components/home/Login'

@@ -1,4 +1,4 @@
-import { UserLocalStorage } from '../../types/user'
+import { UserLocalStorage } from '../types/user'
 import { axiosInstance, bearerAuth } from './axiosConfig'
 
 // const json = { 'Content-type': 'application/json' }

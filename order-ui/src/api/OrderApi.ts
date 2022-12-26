@@ -1,5 +1,5 @@
-import { OrderCreate } from '../../types/order'
-import { User, UserLocalStorage } from '../../types/user'
+import { OrderCreate } from '../types/order'
+import { User, UserLocalStorage } from '../types/user'
 import { axiosInstance, bearerAuth } from './axiosConfig'
 
 const json = { 'Content-type': 'application/json' }

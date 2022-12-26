@@ -1,7 +1,7 @@
 import axios from "axios";
-import { config } from "../../Constants";
-import { UserLocalStorage } from "../../types/user";
-import { parseJwt } from "./Helpers";
+import { config } from "../Constants";
+import { UserLocalStorage } from "../types/user";
+import { parseJwt } from "../util/Helpers";
 
 export const axiosInstance = axios.create({
   baseURL: config.url.API_BASE_URL,

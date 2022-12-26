@@ -2,8 +2,8 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react'
 import AuthContext from '../context/AuthContext'
-import { orderApi } from '../misc/OrderApi'
-import { handleLogError, parseJwt } from '../misc/Helpers'
+import { orderApi } from '../../api/OrderApi'
+import { handleLogError, parseJwt } from '../../util/Helpers'
 
 const Signup = () => {
   const [username, setUsername] = useState<string>("");
