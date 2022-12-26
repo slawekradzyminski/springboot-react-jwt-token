@@ -32,6 +32,10 @@ const Navbar = () => {
     return authContext.userIsAuthenticated() ? { "display": "block" } : { "display": "none" }
   }
 
+  const uploadMenuStyle = () => {
+    return authContext.userIsAuthenticated() ? { "display": "block" } : { "display": "none" }
+  }
+
   const getUserName = () => {
     const user = authContext.getUser()
     return user ? user.data.name : ''
@@ -45,6 +49,7 @@ const Navbar = () => {
         <Menu.Item as={Link} to="/adminpage" style={adminPageStyle()}>AdminPage</Menu.Item>
         <Menu.Item as={Link} to="/userpage" style={userPageStyle()}>UserPage</Menu.Item>
         <Menu.Item as={Link} to="/products" style={productsMenuStyle()}>Products</Menu.Item>
+        <Menu.Item as={Link} to="/upload" style={uploadMenuStyle()}>Upload</Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item as={Link} to="/login" style={enterMenuStyle()}>Login</Menu.Item>
           <Menu.Item as={Link} to="/signup" style={enterMenuStyle()}>Sign Up</Menu.Item>

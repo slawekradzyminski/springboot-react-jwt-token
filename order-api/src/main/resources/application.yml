@@ -14,11 +14,14 @@ spring:
         format_sql: true
         id:
           new_generator_mappings: false
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
   h2:
     console:
       enabled: true
       path: /h2-console
-
 app:
   jwt:
     # Signing key for HS512 algorithm
