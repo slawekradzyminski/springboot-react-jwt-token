@@ -1,6 +1,6 @@
 import { OrderCreate } from '../../types/order'
 import { User, UserLocalStorage } from '../../types/user'
-import { axiosInstance } from './axiosConfig'
+import { axiosInstance, bearerAuth } from './axiosConfig'
 
 const json = { 'Content-type': 'application/json' }
 
@@ -72,8 +72,4 @@ export const orderApi = {
   deleteOrder,
   createOrder,
   getUserMe
-}
-
-const bearerAuth = (user: UserLocalStorage) => {
-  return `Bearer ${user.accessToken}`
 }

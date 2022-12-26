@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from "../../Constants";
+import { UserLocalStorage } from "../../types/user";
 import { parseJwt } from "./Helpers";
 
 export const axiosInstance = axios.create({
@@ -20,3 +21,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
+export const bearerAuth = (user: UserLocalStorage) => {
+  return `Bearer ${user.accessToken}`
+}

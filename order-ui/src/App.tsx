@@ -8,6 +8,7 @@ import Login from './components/home/Login'
 import Signup from './components/home/Signup'
 import AdminPage from './components/admin/AdminPage'
 import UserPage from './components/user/UserPage'
+import ProductsPage from './components/products/ProductsPage'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/signup' component={Signup} />
         <PrivateRoute path='/adminpage' component={AdminPage} />
         <PrivateRoute path='/userpage' component={UserPage} />
+        <PrivateRoute path='/products' component={ProductsPage}/>
       </Router>
     </AuthProvider>
   )
