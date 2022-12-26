@@ -3,7 +3,7 @@ import { Container, Dimmer, Grid, Icon, Image, Loader, Segment, Statistic } from
 import { orderApi } from '../../api/OrderApi'
 import { handleLogError } from '../../util/Helpers'
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const [numberOfUsers, setNumberOfUsers] = useState<number>(0);
   const [numberOfOrders, setNumberOfOrders] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);

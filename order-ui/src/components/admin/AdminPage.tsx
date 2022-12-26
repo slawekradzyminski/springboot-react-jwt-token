@@ -9,7 +9,7 @@ import { ApiUser } from '../../types/user'
 import { Order, OrderCreate } from '../../types/order'
 import { Roles } from '../../types/roles'
 
-export const AdminPage = () => {
+export const AdminPage: React.FC = () => {
   const [users, setUsers] = useState<ApiUser[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [orderDescription, setOrderDescription] = useState<string>('')

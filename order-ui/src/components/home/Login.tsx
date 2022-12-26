@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext";
 import { orderApi } from "../../api/OrderApi";
 import { handleLogError, parseJwt } from "../../util/Helpers";
 
-export const Login = () => {
+export const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

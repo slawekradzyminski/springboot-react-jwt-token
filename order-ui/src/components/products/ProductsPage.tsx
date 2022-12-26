@@ -6,7 +6,7 @@ import { handleLogError } from '../../util/Helpers';
 import { productApi } from '../../api/ProductApi';
 
 
-const ProductPage = () => {
+const ProductPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const authContext = useContext(AuthContext);

@@ -5,7 +5,7 @@ import AuthContext from '../context/AuthContext'
 import { orderApi } from '../../api/OrderApi'
 import { handleLogError, parseJwt } from '../../util/Helpers'
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
