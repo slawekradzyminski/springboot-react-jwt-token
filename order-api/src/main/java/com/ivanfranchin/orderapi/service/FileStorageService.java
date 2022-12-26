@@ -1,34 +1,16 @@
 package com.ivanfranchin.orderapi.service;
 
+import com.ivanfranchin.orderapi.model.FileDB;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.stream.Stream;
 
-import com.ivanfranchin.orderapi.model.FileDB;
-import com.ivanfranchin.orderapi.repository.FileDBRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
+public interface FileStorageService {
 
-@SuppressWarnings("ConstantConditions")
-@Service
-@RequiredArgsConstructor
-public class FileStorageService {
+    FileDB store(MultipartFile file) throws IOException;
 
-    private final FileDBRepository fileDBRepository;
+    FileDB getFile(String id);
 
-    public FileDB store(MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-
-        return fileDBRepository.save(FileDB);
-    }
-
-    public FileDB getFile(String id) {
-        return fileDBRepository.findById(id).get();
-    }
-
-    public Stream<FileDB> getAllFiles() {
-        return fileDBRepository.findAll().stream();
-    }
+    Stream<FileDB> getAllFiles();
 }
