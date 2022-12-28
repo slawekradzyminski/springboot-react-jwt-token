@@ -1,19 +1,15 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.user;
 
+import com.ivanfranchin.orderapi.dto.user.UserDto;
 import com.ivanfranchin.orderapi.mapper.UserMapper;
+import com.ivanfranchin.orderapi.model.User;
 import com.ivanfranchin.orderapi.security.CustomUserDetails;
 import com.ivanfranchin.orderapi.service.UserService;
-import com.ivanfranchin.orderapi.model.User;
-import com.ivanfranchin.orderapi.rest.dto.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

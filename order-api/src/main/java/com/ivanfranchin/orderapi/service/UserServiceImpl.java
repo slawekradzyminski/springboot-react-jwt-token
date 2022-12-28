@@ -1,8 +1,8 @@
 package com.ivanfranchin.orderapi.service;
 
-import com.ivanfranchin.orderapi.repository.UserRepository;
-import com.ivanfranchin.orderapi.exception.UserNotFoundException;
 import com.ivanfranchin.orderapi.model.User;
+import com.ivanfranchin.orderapi.repository.UserRepository;
+import com.ivanfranchin.orderapi.rest.user.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.files;
 
-import com.ivanfranchin.orderapi.rest.dto.ResponseMessage;
+import com.ivanfranchin.orderapi.dto.files.FilesResponseMessage;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class FileGetExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ResponseMessage> handleMaxSizeException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseMessage("Entity not found!"));
+    public ResponseEntity<FilesResponseMessage> handleMaxSizeException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new FilesResponseMessage("Entity not found!"));
     }
 }

@@ -1,10 +1,10 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.order;
 
+import com.ivanfranchin.orderapi.dto.order.CreateOrderRequest;
+import com.ivanfranchin.orderapi.dto.order.OrderDto;
 import com.ivanfranchin.orderapi.mapper.OrderMapper;
 import com.ivanfranchin.orderapi.model.Order;
 import com.ivanfranchin.orderapi.model.User;
-import com.ivanfranchin.orderapi.rest.dto.CreateOrderRequest;
-import com.ivanfranchin.orderapi.rest.dto.OrderDto;
 import com.ivanfranchin.orderapi.security.CustomUserDetails;
 import com.ivanfranchin.orderapi.service.OrderService;
 import com.ivanfranchin.orderapi.service.UserService;

@@ -1,9 +1,9 @@
 package com.ivanfranchin.orderapi.endpoints.auth;
 
 import com.ivanfranchin.orderapi.DomainHelper;
-import com.ivanfranchin.orderapi.rest.dto.AuthResponse;
-import com.ivanfranchin.orderapi.rest.dto.LoginRequest;
-import com.ivanfranchin.orderapi.rest.dto.SignUpRequest;
+import com.ivanfranchin.orderapi.dto.auth.AuthResponse;
+import com.ivanfranchin.orderapi.dto.auth.LoginRequest;
+import com.ivanfranchin.orderapi.dto.auth.SignUpRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpEntity;

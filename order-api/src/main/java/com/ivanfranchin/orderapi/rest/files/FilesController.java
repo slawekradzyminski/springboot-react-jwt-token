@@ -1,8 +1,8 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.files;
 
+import com.ivanfranchin.orderapi.dto.files.FilesResponseMessage;
+import com.ivanfranchin.orderapi.dto.files.ResponseFile;
 import com.ivanfranchin.orderapi.model.FileDB;
-import com.ivanfranchin.orderapi.rest.dto.ResponseFile;
-import com.ivanfranchin.orderapi.rest.dto.ResponseMessage;
 import com.ivanfranchin.orderapi.service.FileStorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -67,16 +67,16 @@ public class FilesController {
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
     @PostMapping("/files/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<FilesResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
             storageService.store(file);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            return ResponseEntity.status(HttpStatus.OK).body(new FilesResponseMessage(message));
         } catch (Exception e) {
             message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new FilesResponseMessage(message));
         }
     }
 }

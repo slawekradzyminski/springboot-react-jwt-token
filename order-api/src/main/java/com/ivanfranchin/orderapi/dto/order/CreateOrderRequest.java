@@ -1,4 +1,4 @@
-package com.ivanfranchin.orderapi.rest.dto;
+package com.ivanfranchin.orderapi.dto.order;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

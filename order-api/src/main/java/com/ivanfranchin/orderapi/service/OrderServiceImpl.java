@@ -1,8 +1,8 @@
 package com.ivanfranchin.orderapi.service;
 
-import com.ivanfranchin.orderapi.repository.OrderRepository;
-import com.ivanfranchin.orderapi.exception.OrderNotFoundException;
 import com.ivanfranchin.orderapi.model.Order;
+import com.ivanfranchin.orderapi.repository.OrderRepository;
+import com.ivanfranchin.orderapi.rest.order.OrderNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

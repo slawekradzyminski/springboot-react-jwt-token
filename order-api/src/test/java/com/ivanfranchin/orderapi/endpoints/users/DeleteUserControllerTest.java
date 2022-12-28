@@ -1,7 +1,7 @@
 package com.ivanfranchin.orderapi.endpoints.users;
 
 import com.ivanfranchin.orderapi.DomainHelper;
-import com.ivanfranchin.orderapi.rest.dto.SignUpRequest;
+import com.ivanfranchin.orderapi.dto.auth.SignUpRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.ivanfranchin.orderapi.endpoints.files;
 
-import com.ivanfranchin.orderapi.rest.dto.ResponseFile;
+import com.ivanfranchin.orderapi.dto.files.ResponseFile;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

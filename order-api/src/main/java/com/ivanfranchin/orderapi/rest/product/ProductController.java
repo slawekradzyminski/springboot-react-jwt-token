@@ -1,9 +1,9 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.product;
 
+import com.ivanfranchin.orderapi.dto.product.CreateProductRequest;
+import com.ivanfranchin.orderapi.dto.product.ProductDto;
 import com.ivanfranchin.orderapi.mapper.ProductMapper;
 import com.ivanfranchin.orderapi.model.Product;
-import com.ivanfranchin.orderapi.rest.dto.CreateProductRequest;
-import com.ivanfranchin.orderapi.rest.dto.ProductDto;
 import com.ivanfranchin.orderapi.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

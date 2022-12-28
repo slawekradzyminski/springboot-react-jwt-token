@@ -1,6 +1,6 @@
 package com.ivanfranchin.orderapi.util;
 
-import com.ivanfranchin.orderapi.rest.dto.SignUpRequest;
+import com.ivanfranchin.orderapi.dto.auth.SignUpRequest;
 import net.bytebuddy.utility.RandomString;
 
 import java.text.MessageFormat;

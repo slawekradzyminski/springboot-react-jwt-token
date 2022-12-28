@@ -1,7 +1,7 @@
 package com.ivanfranchin.orderapi.security;
 
 import com.ivanfranchin.orderapi.config.LoggingFilter;
-import com.ivanfranchin.orderapi.rest.AuthController;
+import com.ivanfranchin.orderapi.rest.auth.AuthController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

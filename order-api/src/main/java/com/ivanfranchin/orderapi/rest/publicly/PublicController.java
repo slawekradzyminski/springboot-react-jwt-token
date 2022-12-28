@@ -1,4 +1,4 @@
-package com.ivanfranchin.orderapi.rest;
+package com.ivanfranchin.orderapi.rest.publicly;
 
 import com.ivanfranchin.orderapi.service.OrderService;
 import com.ivanfranchin.orderapi.service.UserService;

@@ -1,8 +1,8 @@
 package com.ivanfranchin.orderapi.mapper;
 
+import com.ivanfranchin.orderapi.dto.product.CreateProductRequest;
+import com.ivanfranchin.orderapi.dto.product.ProductDto;
 import com.ivanfranchin.orderapi.model.Product;
-import com.ivanfranchin.orderapi.rest.dto.CreateProductRequest;
-import com.ivanfranchin.orderapi.rest.dto.ProductDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.ivanfranchin.orderapi.rest.dto;
+package com.ivanfranchin.orderapi.dto.user;
 
 import lombok.Builder;
 
