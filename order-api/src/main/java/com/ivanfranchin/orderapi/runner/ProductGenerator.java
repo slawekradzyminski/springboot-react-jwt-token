@@ -5,6 +5,7 @@ import com.ivanfranchin.orderapi.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -18,7 +19,8 @@ import java.util.stream.IntStream;
 public class ProductGenerator {
 
     private static final Faker FAKER = new Faker();
-    private static final int NUMBER_OF_PRODUCTS = 100;
+    @Value("${generator.numberOfProducts}")
+    private final int numberOfProducts;
 
     private static final List<Product> PREDEFINED_PRODUCTS = List.of(
             new Product("e6251501-fa8f-40f1-8f2b-ea944c0e524f", "iPhone X", BigDecimal.TEN),
@@ -38,7 +40,7 @@ public class ProductGenerator {
     public void generateProducts() {
         log.info("Start generating products");
         PREDEFINED_PRODUCTS.forEach(productService::saveProduct);
-        IntStream.range(0, NUMBER_OF_PRODUCTS)
+        IntStream.range(0, numberOfProducts)
                 .mapToObj(i -> getRandomProduct())
                 .forEach(productService::saveProduct);
         log.info("Finish generating products");

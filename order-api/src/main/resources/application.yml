@@ -32,6 +32,6 @@ app:
   cors:
     allowed-origins: http://localhost:3000
 
-logging:
-  level:
-    org.springframework.security: DEBUG
+generator:
+  numberOfUsers: 20
+  numberOfProducts: 100

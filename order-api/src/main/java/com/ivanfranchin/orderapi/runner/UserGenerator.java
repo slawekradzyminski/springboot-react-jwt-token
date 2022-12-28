@@ -6,6 +6,7 @@ import com.ivanfranchin.orderapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,8 @@ import java.util.stream.IntStream;
 public class UserGenerator {
 
     private static final Faker FAKER = new Faker();
-    private static final int NUMBER_OF_USERS = 20;
+    @Value("${generator.numberOfUsers}")
+    private final int numberOfUsers;
 
     private static final List<User> PREDEFINED_USERS = List.of(
             new User("admin", "admin", "Admin", "admin@mycompany.com", WebSecurityConfig.ADMIN),
@@ -31,7 +33,7 @@ public class UserGenerator {
     public void generateUsers() {
         log.info("Start generating users");
         PREDEFINED_USERS.forEach(this::saveUser);
-        IntStream.range(0, NUMBER_OF_USERS)
+        IntStream.range(0, numberOfUsers)
                 .mapToObj(i -> getRandomUser())
                 .forEach(this::saveUser);
         log.info("Finish generating users");

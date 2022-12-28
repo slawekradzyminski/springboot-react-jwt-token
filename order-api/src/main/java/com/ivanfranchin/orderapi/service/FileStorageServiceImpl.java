@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @SuppressWarnings("ConstantConditions")
@@ -26,8 +27,8 @@ public class FileStorageServiceImpl implements FileStorageService {
     }
 
     @Override
-    public FileDB getFile(String id) {
-        return fileDBRepository.findById(id).get();
+    public Optional<FileDB> getFile(String id) {
+        return fileDBRepository.findById(id);
     }
 
     @Override

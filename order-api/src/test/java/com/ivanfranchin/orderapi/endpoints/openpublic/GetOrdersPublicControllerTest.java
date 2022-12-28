@@ -35,7 +35,6 @@ public class GetOrdersPublicControllerTest extends DomainHelper {
         String clientToken = registerAndGetToken(getRandomUser());
 
         // when
-        // when
         ResponseEntity<Integer> response =
                 executeGet(NUMBER_OF_ORDERS_ENDPOINT,
                         getHeadersWith(clientToken),

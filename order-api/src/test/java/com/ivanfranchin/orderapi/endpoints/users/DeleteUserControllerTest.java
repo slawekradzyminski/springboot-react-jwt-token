@@ -20,8 +20,8 @@ public class DeleteUserControllerTest extends DomainHelper {
         String apiToken = loginAsAdminAndGetToken();
 
         // when
-        ResponseEntity<String> response =
-                executeDelete(getUserEndpoint(username), getHeadersWith(apiToken), String.class);
+        ResponseEntity<?> response =
+                executeDelete(getUserEndpoint(username), getHeadersWith(apiToken), Object.class);
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);

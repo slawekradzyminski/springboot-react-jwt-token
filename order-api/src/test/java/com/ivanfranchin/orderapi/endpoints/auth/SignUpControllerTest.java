@@ -15,6 +15,7 @@ import static com.ivanfranchin.orderapi.util.UserUtil.getRandomUser;
 import static com.ivanfranchin.orderapi.util.UserUtil.getRandomUserWithUsername;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("ConstantConditions")
 public class SignUpControllerTest extends DomainHelper {
 
     @Test
@@ -23,19 +24,18 @@ public class SignUpControllerTest extends DomainHelper {
         SignUpRequest signUpRequest = getRandomUser();
 
         // when
-        ResponseEntity<String> response = registerUser(signUpRequest, String.class);
+        ResponseEntity<?> response = registerUser(signUpRequest, Object.class);
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        assertThat(response.getBody()).isNotBlank();
+        assertThat(response.getBody().toString()).isNotBlank();
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Test
     public void shouldFailToRegisterExistingUsername() {
         // given
         SignUpRequest firstUser = getRandomUser();
-        registerUser(firstUser, String.class);
+        registerUser(firstUser, Object.class);
         SignUpRequest secondUser = getRandomUserWithUsername(firstUser.getUsername());
 
         // when
@@ -45,7 +45,6 @@ public class SignUpControllerTest extends DomainHelper {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CONFLICT);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Test
     public void shouldFailToRegisterUsernameTooShort() {
         // given
