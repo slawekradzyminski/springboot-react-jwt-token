@@ -12,10 +12,18 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Pattern;
 
 @Component
 @Slf4j
 public class LoggingFilter extends OncePerRequestFilter {
+
+    private static final Pattern UUID_REGEX = Pattern.compile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$");
+
+    private static boolean isFileDownloadRequest(HttpServletRequest request) {
+        String[] lastPartOfUrl = request.getRequestURI().split("/");
+        return lastPartOfUrl.length > 2 && UUID_REGEX.matcher(lastPartOfUrl[2]).matches();
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -29,14 +37,22 @@ public class LoggingFilter extends OncePerRequestFilter {
 
         String requestBody = getStringValue(requestWrapper.getContentAsByteArray(),
                 request.getCharacterEncoding());
-        String responseBody = getStringValue(responseWrapper.getContentAsByteArray(),
-                response.getCharacterEncoding());
+        String responseBody = filteredResponseBody(request, response, responseWrapper);
 
         log.info(
                 "FINISHED PROCESSING : METHOD={}; REQUESTURI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIME TAKEN={}",
                 request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
                 timeTaken);
         responseWrapper.copyBodyToResponse();
+    }
+
+    private String filteredResponseBody(HttpServletRequest request, HttpServletResponse response, ContentCachingResponseWrapper responseWrapper) {
+        if (isFileDownloadRequest(request)) {
+            return "CUSTOM OBFUSCATED FILE BODY TO PREVENT BLOB LOGGING";
+        }
+
+        return getStringValue(responseWrapper.getContentAsByteArray(),
+                response.getCharacterEncoding());
     }
 
     private String getStringValue(byte[] contentAsByteArray, String characterEncoding) {

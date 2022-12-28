@@ -19,7 +19,7 @@ import java.text.MessageFormat;
 
 public class AbstractFileTest extends DomainHelper {
 
-    static final String UPLOAD_ENDPOINT = "/upload";
+    static final String UPLOAD_ENDPOINT = "/files/upload";
 
     @SneakyThrows
     static MultiValueMap<String, Object> getBody(int fileSize) {

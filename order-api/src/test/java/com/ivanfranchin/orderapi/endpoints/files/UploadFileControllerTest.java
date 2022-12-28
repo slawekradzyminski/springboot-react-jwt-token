@@ -1,9 +1,7 @@
 package com.ivanfranchin.orderapi.endpoints.files;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
 
 import static com.ivanfranchin.orderapi.util.UserUtil.getRandomUser;
@@ -52,7 +50,7 @@ public class UploadFileControllerTest extends AbstractFileTest {
     @Test
     public void shouldReturn401AsUnauthorized() {
         // given
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(getBody(1), getJsonOnlyHeaders());
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(getBody(1), getMultipartFormDataHeaders());
 
         // when
         ResponseEntity<?> response = restTemplate.postForEntity(UPLOAD_ENDPOINT, requestEntity, Object.class);
@@ -61,5 +59,10 @@ public class UploadFileControllerTest extends AbstractFileTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
+    private HttpHeaders getMultipartFormDataHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        return headers;
+    }
 
 }

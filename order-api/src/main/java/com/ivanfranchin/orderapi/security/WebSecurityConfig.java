@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/orders").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/api/users/me").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers("/api/products", "/api/products/**").hasAnyAuthority(ADMIN, USER)
-                        .requestMatchers("/upload", "/files").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers("/files/upload", "/files").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers("/api/orders", "/api/orders/**").hasAuthority(ADMIN)
                         .requestMatchers("/api/users", "/api/users/**").hasAuthority(ADMIN)
                         .requestMatchers("/files/**", "/public/**", "/auth/**", "/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()

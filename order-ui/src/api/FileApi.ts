@@ -10,7 +10,7 @@ const upload = (
 
   formData.append("file", file);
 
-  return axiosInstance.post("/upload", formData, {
+  return axiosInstance.post("/files/upload", formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Authorization': bearerAuth(user),
