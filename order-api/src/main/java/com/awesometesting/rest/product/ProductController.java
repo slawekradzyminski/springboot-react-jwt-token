@@ -34,6 +34,13 @@ public class ProductController {
     }
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("/{id}")
+    public ProductDto getProduct(@PathVariable UUID id) {
+        Product product = productService.getProduct(id).orElseThrow(ProductNotFoundException::new);
+        return productMapper.toProductDto(product);
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ProductDto createProduct(@Valid @RequestBody CreateProductRequest createProductRequest) {

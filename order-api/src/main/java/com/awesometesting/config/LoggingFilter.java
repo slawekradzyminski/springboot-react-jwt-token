@@ -39,11 +39,17 @@ public class LoggingFilter extends OncePerRequestFilter {
                 request.getCharacterEncoding());
         String responseBody = filteredResponseBody(request, response, responseWrapper);
 
-        log.info(
-                "FINISHED PROCESSING : METHOD={}; URI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIME TAKEN={}",
-                request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
-                timeTaken);
+        if (!swaggerRequest(request.getRequestURI())) {
+            log.info(
+                    "FINISHED PROCESSING : METHOD={}; URI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIME TAKEN={}",
+                    request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
+                    timeTaken);
+        }
         responseWrapper.copyBodyToResponse();
+    }
+
+    private boolean swaggerRequest(String requestURI) {
+        return requestURI.contains("swagger") || requestURI.contains("v3/api-docs");
     }
 
     private String filteredResponseBody(HttpServletRequest request, HttpServletResponse response, ContentCachingResponseWrapper responseWrapper) {
