@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container, Table } from 'semantic-ui-react'
+import { Button, Container, Table } from 'semantic-ui-react'
 import { Product } from '../../types/product';
 import AuthContext from '../context/AuthContext';
 import { handleLogError } from '../../util/Helpers';
@@ -30,6 +30,7 @@ const ProductPage: React.FC = () => {
 
   const main = () => (
     <Container>
+      <Button size='huge' onClick={() => location.href='/add-product'} primary>Add new product</Button>
       <Table singleLine>
         <Table.Header>
           <Table.Row>

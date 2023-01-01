@@ -10,6 +10,7 @@ import AdminPage from './components/admin/AdminPage'
 import UserPage from './components/user/UserPage'
 import ProductsPage from './components/products/ProductsPage'
 import FileUpload from './components/file/FileUpload'
+import AddProductPage from './components/products/AddProductPage'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <PrivateRoute path='/adminpage' component={AdminPage} />
         <PrivateRoute path='/userpage' component={UserPage} />
         <PrivateRoute path='/products' component={ProductsPage}/>
+        <PrivateRoute path='/add-product' component={AddProductPage}/>
         <PrivateRoute path='/upload' component={FileUpload}/>
       </Router>
     </AuthProvider>

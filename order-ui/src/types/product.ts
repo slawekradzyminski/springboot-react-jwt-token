@@ -4,3 +4,8 @@ export type Product = {
     name: string,
     createdAt: string
 }
+
+export type CreateProduct = {
+    name: string,
+    price: number
+}
