@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Container, Table } from 'semantic-ui-react'
+import { Button, Container, Icon, Table } from 'semantic-ui-react'
 import { Product } from '../../types/product';
 import AuthContext from '../context/AuthContext';
 import { handleLogError } from '../../util/Helpers';
@@ -30,13 +30,14 @@ const ProductPage: React.FC = () => {
 
   const main = () => (
     <Container>
-      <Button size='huge' onClick={() => location.href='/add-product'} primary>Add new product</Button>
+      <Button size='huge' onClick={() => location.href = '/add-product'} primary>Add new product</Button>
       <Table singleLine>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell>Price</Table.HeaderCell>
             <Table.HeaderCell>Id</Table.HeaderCell>
+            <Table.HeaderCell>Edit</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -46,6 +47,9 @@ const ProductPage: React.FC = () => {
               <Table.Cell>{product.name}</Table.Cell>
               <Table.Cell>{product.price}</Table.Cell>
               <Table.Cell>{product.id}</Table.Cell>
+              <Table.Cell>
+                <Icon name='edit' onClick={() => location.href=`/product-edit/${product.id}`} />
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

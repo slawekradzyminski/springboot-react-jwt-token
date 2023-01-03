@@ -11,6 +11,7 @@ import UserPage from './components/user/UserPage'
 import ProductsPage from './components/products/ProductsPage'
 import FileUpload from './components/file/FileUpload'
 import AddProductPage from './components/products/AddProductPage'
+import EditProductPage from './components/products/EditProductPage'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <PrivateRoute path='/products' component={ProductsPage}/>
         <PrivateRoute path='/add-product' component={AddProductPage}/>
         <PrivateRoute path='/upload' component={FileUpload}/>
+        <PrivateRoute path="/product-edit/*" component={EditProductPage} />
       </Router>
     </AuthProvider>
   )

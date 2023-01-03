@@ -1,20 +1,35 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { Form, Grid, Message } from 'semantic-ui-react'
 import { productApi } from '../../api/ProductApi';
 import { CreateProduct } from '../../types/product';
 import { handleLogError } from '../../util/Helpers';
 import AuthContext from '../context/AuthContext';
 
-const AddProductPage: React.FC = () => {
+const EditProductPage: React.FC = () => {
+    const url = window.location.pathname
     const [name, setName] = useState<string>('');
     const [price, setPrice] = useState<string>('');
     const [success, setSuccess] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
     const authContext = useContext(AuthContext);
 
+    useEffect(() => {
+        const fetchData = async () => {
+          const usersResponse = await productApi.getProduct(authContext.getUser(), url.split('/')[2])
+          const priceWithComma = usersResponse.data.price.toString()
+          const priceWithDot = priceWithComma.replace(/,/g, '.')
+          console.log(priceWithComma)
+          console.log(priceWithDot)
+          setPrice(priceWithDot.toLocaleString('en-GB'))
+          setName(usersResponse.data.name)
+        }
+    
+        fetchData()
+          .catch(error => handleLogError(error))
+      }, [url])
 
     const handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setPrice(event.target.value.toString())
+        setPrice(event.target.value)
     };
 
     const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,9 +43,7 @@ const AddProductPage: React.FC = () => {
         }
 
         const createProduct = async () => {
-            await productApi.createProduct(authContext.getUser(), product)
-            setName('')
-            setPrice('')
+            await productApi.editProduct(authContext.getUser(), url.split('/')[2], product)
             setSuccess(true)
             setError(false)
         }
@@ -80,8 +93,7 @@ const AddProductPage: React.FC = () => {
                     <Form.Group>
                         <Message
                             success
-                            header='Product created'
-                            content='You can add more if you need'
+                            header='Product updated'
                         />
                         <Message
                             error
@@ -96,4 +108,4 @@ const AddProductPage: React.FC = () => {
     </>
 }
 
-export default AddProductPage
+export default EditProductPage

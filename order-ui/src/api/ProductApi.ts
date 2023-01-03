@@ -8,6 +8,21 @@ const getProducts = (user: UserLocalStorage) => {
   });
 };
 
+const getProduct = (user: UserLocalStorage, id: string) => {
+  return axiosInstance.get(`/api/products/${id}`, {
+    headers: { Authorization: bearerAuth(user) },
+  });
+}
+
+const editProduct = (user: UserLocalStorage, id: string, createProduct: CreateProduct) => {
+  return axiosInstance.put(`/api/products/${id}`, createProduct, {
+    headers: { 
+      Authorization: bearerAuth(user),
+      'Content-type': 'application/json'
+    },
+  });
+}
+
 const createProduct = (
   user: UserLocalStorage,
   createProduct: CreateProduct
@@ -22,5 +37,7 @@ const createProduct = (
 
 export const productApi = {
   getProducts,
-  createProduct
+  createProduct,
+  getProduct,
+  editProduct
 };
